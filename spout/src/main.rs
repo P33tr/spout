@@ -1,5 +1,7 @@
 use std::env;
+use std::fs::File;
 use notify_rust::{Notification, Hint};
+use std::time::{SystemTime, UNIX_EPOCH};
 
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -7,6 +9,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // get the command line arguments
     let args: Vec<String> = env::args().collect();
     dbg!(args);
+
+    
+    // let mut file = File::open(path).await.unwrap();
+    // let mut interval = time::interval(Duration::from_millis(1000));
+    // let mut contents = vec![];
+    // let mut position = 0;
 
     Notification::new()
     .summary("minimal notification")
@@ -21,22 +29,18 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 
 
-    let mut file = File::open(path).await.unwrap();
-    let mut interval = time::interval(Duration::from_millis(1000));
-    let mut contents = vec![];
-    let mut position = 0;
     
-    loop {
-        contents.truncate(0);
-        file.seek(SeekFrom::Start(position as u64)).await;
-        position += file.read_to_end(&mut contents).await.unwrap();
+    // loop {
+    //     contents.truncate(0);
+    //     file.seek(SeekFrom::Start(position as u64)).await;
+    //     position += file.read_to_end(&mut contents).await.unwrap();
         
-        /// do_process(contents)
+    //     /// do_process(contents)
         
-        interval.tick().await;
-    }
+    //     interval.tick().await;
+    // }
 
-    Ok(());
+    Ok(())
 }
 
 //https://stackoverflow.com/questions/71632833/how-to-continuously-watch-and-read-file-asynchronously-in-rust-using-tokio
