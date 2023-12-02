@@ -55,9 +55,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 // define a component that renders a div with the text "Hello, world!"
 fn App(cx: Scope) -> Element {
+
+    let mut count_a = use_state(cx, || 0);
+
     cx.render(rsx! {
         div {
             "Hello, peter"
+        }
+        h1 { "Counter_a: {count_a}" }
+        div {
+            button { onclick: move |_| count_a += 1, "a++" }
         }
     })
 }
