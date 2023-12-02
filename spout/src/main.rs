@@ -1,7 +1,9 @@
+#![allow(non_snake_case)]
 use std::env;
 use std::fs::File;
 use notify_rust::{Notification, Hint};
 use std::time::{SystemTime, UNIX_EPOCH};
+use dioxus::prelude::*;
 
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -34,7 +36,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 
 
-
+    dioxus_desktop::launch(App);
 
 
     
@@ -51,4 +53,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
+// define a component that renders a div with the text "Hello, world!"
+fn App(cx: Scope) -> Element {
+    cx.render(rsx! {
+        div {
+            "Hello, peter"
+        }
+    })
+}
 //https://stackoverflow.com/questions/71632833/how-to-continuously-watch-and-read-file-asynchronously-in-rust-using-tokio
+//https://dioxuslabs.com/learn/0.4/getting_started/wasm
