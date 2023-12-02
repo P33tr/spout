@@ -8,13 +8,21 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // get the command line arguments
     let args: Vec<String> = env::args().collect();
-    dbg!(args);
-
     
+    //let args_as_string = String::from(args[1]);
+    let args_as_string = "xxx";
     // let mut file = File::open(path).await.unwrap();
     // let mut interval = time::interval(Duration::from_millis(1000));
     // let mut contents = vec![];
     // let mut position = 0;
+
+    Notification::new()
+    .summary("Args notification")
+    .body(&args_as_string)
+    .icon("thunderbird")
+    .appname("thunderbird")
+    .timeout(0)
+    .show()?;
 
     Notification::new()
     .summary("minimal notification")
